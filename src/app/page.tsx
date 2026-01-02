@@ -43,6 +43,18 @@ import {
 import { supabase } from '@/lib/supabase'
 import { getAccounts, createAccount, deleteAccount, createEntry, updateEntry, deleteEntry, subscribeToAccounts, subscribeToEntries, AccountWithEntries } from '@/lib/supabase-db'
 import AuthForm from '@/components/auth/auth-form'
+import { 
+  registerServiceWorker, 
+  onOnlineChange, 
+  isOnline as checkOnline
+} from '@/lib/pwa-utils'
+
+// ===== PHASE 2 RULES: Service Worker Registration =====
+// RULE: Register service worker once on app load
+// RULE: Confirm it activates correctly in DevTools
+useEffect(() => {
+  registerServiceWorker()
+}, [])
 
 interface Entry {
   id: string
